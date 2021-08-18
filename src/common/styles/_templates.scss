@@ -1,5 +1,66 @@
-%flex-container {
+%flex-column {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+}
+
+%buttonJoin-children {
+  & > label {
+    position: relative;
+  }
+
+  & > label *:first-child {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+  }
+
+  & p,
+  span {
+    margin: 0 0 0 30px;
+  }
+
+  p {
+    font-size: 1.2rem;
+    letter-spacing: 0.1rem;
+  }
+  & span {
+    font-weight: 100;
+    font-size: 0.85rem;
+  }
+}
+
+%errorSets {
+  color: rgb(248, 59, 59);
+  font-weight: bold;
+  font-size: 0.85rem;
+  padding: 2px;
+  letter-spacing: 0.05rem;
+  border: 1px solid black;
+  background: rgb(65, 63, 63);
+  position: absolute;
+  top: 57px;
+  left: 3px;
+}
+
+%submit-button {
+  background-color: rgb(50, 212, 212);
+  border: 1px solid rgb(43, 192, 192);
+  border-radius: 5px;
+  color: whitesmoke;
+  height: 4rem;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+%button-to-google {
+  background-color: rgb(190, 95, 95);
+  border: 1px solid rgb(189, 86, 86);
+  border-radius: 5px;
+  color: whitesmoke;
+  text-align: center;
+  text-decoration: none;
+  height: 2.8rem;
+  line-height: 2.8rem;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
 }

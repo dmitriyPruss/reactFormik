@@ -1,42 +1,39 @@
 import * as yup from 'yup';
 
-export const LOGIN_SCHEMA = yup.object({
-  email: yup.string().email().required(),
-  password: yup
-    .string()
-    .matches(/^(?=.*[A-Z].*)(?=.*[a-z].*)(?=.*[!@#$%^&*].*).{8,32}$/)
-    .min(8)
-    .max(32)
-    .required(),
+const EMAIL_SCHEMA = yup
+  .string()
+  .email('Invalid symbols. Try again...')
+  .required('Email must not be empty!');
+
+const PASSWORD_SCHEMA = yup
+  .string()
+  .matches(
+    /^(?=.*[A-Z].*)(?=.*[a-z].*)(?=.*[!@#$%^&*].*).{9,33}$/,
+    'Wrong symbols!'
+  )
+  .min(10, 'Enter more then 9 symbols')
+  .max(32, 'Too mush symbols!')
+  .required('Password must not be empty!');
+
+const USERNAME = yup.string().matches(/^([A-Z][a-z]{1,19})$/, 'Invalid name!');
+
+export const LOGIN_SCHEMA = yup.object().shape({
+  emailAddress: EMAIL_SCHEMA,
+  userPassword: PASSWORD_SCHEMA,
 });
-// export const SIGNUP_SCHEMA =
 
-// -------------------------------------------------------
-// схема для user = {firstName, lastName, age}
-// const user = {
-//   firstName: 'dfgfdest',
-//   lastName: 'Tester',
-//   age: 1,
-// };
-
-// const NAME_SCHEMA = yup
-//   .string()
-//   .matches(/^([A-Z][a-z]{1,18})$/)
-//   .required();
-
-// const USER_SCHEMA = yup.object({
-//   firstName: NAME_SCHEMA,
-//   lastName: NAME_SCHEMA,
-//   age: yup.number().positive().integer().max(130),
-// });
-
-// const isValidUser = USER_SCHEMA.isValidSync(user);
-// console.log(isValidUser);
-//-------------------------------------
-// const validatedObject = {
-//   email: 'qwerty@qwerty.com',
-//   password: '1234Aj465##56',
-// };
-
-// isValid, isValidSync, validate, validateSync
-// const isValid = LOGIN_SCHEMA.isValidSync(validatedObject);
+export const CREATE_ACCOUNT_SCHEMA = yup.object().shape({
+  firstName: USERNAME.required('First name must not be empty!'),
+  lastName: USERNAME.required('Second name must not be empty!'),
+  displayName: yup
+    .string()
+    .matches(/^\S+$/, 'No spaces!')
+    .min(5, 'Enter more then 4 symbols')
+    .required('DisplayName musn`t be empty!'),
+  emailAddress: EMAIL_SCHEMA,
+  userPassword: PASSWORD_SCHEMA,
+  passwordConfirmation: yup
+    .string()
+    .required('Password musn`t be empty!')
+    .oneOf([yup.ref('userPassword')], 'Password must be confirmed'),
+});

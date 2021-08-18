@@ -1,0 +1,118 @@
+@import './../../common/styles/vars';
+@import './../../common/styles/templates';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Gotham SSm A, Gotham SSm B, Halvetica, sans-serif;
+}
+
+:root {
+  font-size: 18px;
+}
+
+.header {
+  font-size: 2.15rem;
+  font-weight: 900;
+  margin: 10px;
+  text-align: center;
+}
+
+.loginContainer {
+  color: $white;
+  background: $blue;
+  height: 100vh;
+  width: 90%;
+  margin: 0 auto;
+  min-width: $minWidth;
+  @extend %flex-column;
+  align-items: center;
+}
+
+.formContainer {
+  width: 50%;
+
+  @media screen and (max-width: 1000px) {
+    width: 65%;
+  }
+
+  @media screen and (max-width: 600px) {
+    width: 75%;
+  }
+}
+
+.inputsContainer {
+  @extend %flex-column;
+  justify-content: space-evenly;
+}
+
+.inputElemLogin {
+  width: 100%;
+  position: relative;
+  height: 100px;
+}
+
+.inputLogin {
+  height: 4.2rem;
+  width: 100%;
+  border-radius: 3px;
+  border: 1px solid $white;
+  font-size: 1rem;
+
+  padding-left: 30px;
+}
+
+.rememberingPassword {
+  display: flex;
+  justify-self: flex-start;
+  justify-content: space-between;
+
+  & > * {
+    text-decoration: none;
+    font-size: 0.9rem;
+    color: $white;
+  }
+}
+
+.buttons {
+  @extend %flex-column;
+  justify-content: space-evenly;
+  height: 150px;
+}
+
+.buttonView {
+  border: 1px solid $white;
+  font-weight: bold;
+  padding: 8px 12px;
+
+  & > * {
+    text-decoration: none;
+    color: $white;
+  }
+}
+
+.submitBut {
+  background-color: rgb(50, 212, 212);
+  border: 1px solid rgb(47, 196, 196);
+  border-radius: 5px;
+  color: whitesmoke;
+  height: 4.2rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.signUpGoogle {
+  background-color: rgb(190, 95, 95);
+  border: 1px solid rgb(204, 101, 101);
+  border-radius: 5px;
+  color: whitesmoke;
+  text-align: center;
+  text-decoration: none;
+  height: 2.8rem;
+  line-height: 2.8rem;
+  font-size: 0.9rem;
+}
