@@ -28,36 +28,36 @@ class App extends Component {
 
     return (
       <Router>
-        <ul className={styles.navContainer}>
-          <li>
-            <a href='https://www.squadhelp.com/'>
-              <img
-                width={190}
-                src={
-                  'https://www.squadhelp.com/blog/wp-content/uploads/2018/04/Squadhelp_logo_white-transparent.png'
-                }
-              />
-            </a>
-          </li>
-          <li className={buttonNavClass} onClick={this.clickHandler}>
-            {isCreateAccount ? (
-              <Link to={'/create'}>Login</Link>
-            ) : (
-              <Link to={'/login'}>Signup</Link>
-            )}
-          </li>
-        </ul>
-        <Switch>
-          {isCreateAccount ? (
-            <Route>
-              <CreateAccount />
-            </Route>
-          ) : (
-            <Route>
-              <LoginAccount />
-            </Route>
-          )}
-        </Switch>
+        <header>
+          <ul className={styles.navContainer}>
+            <li>
+              <a href='https://www.squadhelp.com/'>
+                <img
+                  width={190}
+                  src={
+                    'https://www.squadhelp.com/blog/wp-content/uploads/2018/04/Squadhelp_logo_white-transparent.png'
+                  }
+                />
+              </a>
+            </li>
+            <li className={buttonNavClass} onClick={this.clickHandler}>
+              {isCreateAccount ? (
+                <Link to={'/login'}>Login</Link>
+              ) : (
+                <Link to={'/create'}>Signup</Link>
+              )}
+            </li>
+          </ul>
+        </header>
+        {isCreateAccount ? (
+          <Route>
+            <CreateAccount />
+          </Route>
+        ) : (
+          <Route>
+            <LoginAccount />
+          </Route>
+        )}
       </Router>
     );
   }
