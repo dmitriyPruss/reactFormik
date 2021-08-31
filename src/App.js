@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import CreateAccount from './components/CreateAccount';
 import LoginAccount from './components/LoginAccount';
-import classNames from 'classnames';
-import styles from './App.module.scss';
+import Header from './components/Header';
 
 class App extends Component {
   constructor (props) {
@@ -22,42 +21,20 @@ class App extends Component {
   };
 
   render () {
-    const buttonNavClass = classNames(styles.buttonView, styles.buttonNav);
-
-    const { isCreateAccount } = this.state;
-
     return (
       <Router>
-        <header>
-          <ul className={styles.navContainer}>
-            <li>
-              <a href='https://www.squadhelp.com/'>
-                <img
-                  width={190}
-                  src={
-                    'https://www.squadhelp.com/blog/wp-content/uploads/2018/04/Squadhelp_logo_white-transparent.png'
-                  }
-                />
-              </a>
-            </li>
-            <li className={buttonNavClass} onClick={this.clickHandler}>
-              {isCreateAccount ? (
-                <Link to={'/login'}>Login</Link>
-              ) : (
-                <Link to={'/create'}>Signup</Link>
-              )}
-            </li>
-          </ul>
-        </header>
-        {isCreateAccount ? (
-          <Route>
+        <Header
+          isCreateAccount={this.state.isCreateAccount}
+          clickHandler={this.clickHandler}
+        />
+        <Switch>
+          <Route path='/create'>
             <CreateAccount />
           </Route>
-        ) : (
-          <Route>
+          <Route path='/login'>
             <LoginAccount />
           </Route>
-        )}
+        </Switch>
       </Router>
     );
   }

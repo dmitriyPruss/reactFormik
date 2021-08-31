@@ -1,12 +1,4 @@
-@import './common/styles/vars';
-
-* {
-  box-sizing: border-box;
-}
-
-:root {
-  font-size: 16px;
-}
+@import './../../common/styles/vars';
 
 .navContainer {
   min-width: $minWidth;
